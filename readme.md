@@ -1,3 +1,5 @@
+Author: Bui Thi Binh
+
 1. Create new framework:
 npm init playwright@latest
 2. Run framework
