@@ -1,0 +1,7 @@
+AUTHOR=Tester
+DEFAULT_TIMEOUT=5000
+BASE_URL=https://material.playwrightvn.com/
+# Skipped Steps Screenshot
+SCREENSHOT_SKIPPED_STEPS = yes
+# All Steps Screenshot
+SCREENSHOT_ALL_STEPS = yes

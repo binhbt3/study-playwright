@@ -1,0 +1,38 @@
+[
+    {
+        "username": "binhbt3",
+        "email": "bui.binh.k56@gmail.com",
+        "gender": "female",
+        "hobbies": "Traveling",
+        "interests": [
+            "Art",
+            "Music"
+        ],
+        "country": "Canada",
+        "dateOfBirth": "2024-01-05",
+        "profilePicture": "readme.md",
+        "biography": "My name is Binh. I am 32 years old",
+        "rateUs": "9",
+        "favoriteColor": "#d9c9c9",
+        "newsLetter": true,
+        "enableFeature": true
+    },
+    {
+        "username": "binhbt2",
+        "email": "bui.binh.k57@gmail.com",
+        "gender": "male",
+        "hobbies": "Cooking",
+        "interests": [
+            "Art",
+            "Music"
+        ],
+        "country": "Canada",
+        "dateOfBirth": "2024-01-05",
+        "profilePicture": "readme.md",
+        "biography": "My name is Binh. I am 32 years old",
+        "rateUs": "9",
+        "favoriteColor": "#d9c9c9",
+        "newsLetter": true,
+        "enableFeature": true
+    }
+]

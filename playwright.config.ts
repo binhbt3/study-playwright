@@ -1,5 +1,4 @@
 import { defineConfig, devices } from '@playwright/test';
-
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -12,7 +11,11 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  // Global setup: A file that runs once before all tests
+  globalSetup: require.resolve('./src/hooks/globalSetup'),
+  // Global teardown: A file that runs once after tests
+  globalTeardown: require.resolve('./src/hooks/globalTeardown'),
+  testDir: './',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -20,16 +23,29 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  workers: process.env.CI ? 1 : 2,
+  /* 
+   * Reporter configuration.
+   * Here, we use multiple reporters:
+   *  - 'list': Outputs test results to the terminal.
+   *  - 'html': Generates an HTML report saved to the outputFolder; open: 'never' prevents auto-opening.
+   *  - A custom reporter located at './src/hooks/customReport'.
+   */
+  reporter: [
+    ['list'], 
+    ['html', { outputFolder: 'playwright-report', open: 'never', logLevel: 'info' }],
+    ['./src/hooks/customReport']
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    // Collect trace only when a test fails; helps with debugging.
+    trace: 'off',
+    // Capture screenshots for every test; you can change this to 'only-on-failure' if preferred.
+    screenshot: 'on',
+    headless: process.env.CI ? true : false  // Trong CI, chạy headless; trong local, có thể mở browser
   },
 
   /* Configure projects for major browsers */
